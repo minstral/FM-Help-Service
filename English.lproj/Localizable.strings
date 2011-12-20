@@ -1,0 +1,6 @@
+/* Error message. */
+"Error: no suitable data on the clipboard" = "Error: no suitable data on the clipboard";
+
+/* Warning ... the app may not be able to find the FileMaker help. */
+"Unable to determine the help bookID. Trying: " = "Unable to determine the help bookID. Trying: ";
+

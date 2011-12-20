@@ -1,0 +1,25 @@
+
+# user specific data in the project files
+*.xcuserstate
+*.xcbkptlist
+
+*/xcuserdata/*
+
+
+# osx noise
+*.DS_Store
+
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective 
+*.perspectivev3
+*.pyc 
+*~.nib/
+
+
+# Textmate - if you build your xcode projects with it
+*.tm_build_errors
+
+
+*.vcxproj.user

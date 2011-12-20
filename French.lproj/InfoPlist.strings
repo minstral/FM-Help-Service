@@ -1,0 +1,4 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "Service FM Aide";	/*	FM Help Service	*/
+CFBundleDisplayName = "Service FM Aide";	/*	FM Help Service	*/

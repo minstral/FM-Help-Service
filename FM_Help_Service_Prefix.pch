@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'FM Help Service' target in the 'FM Help Service' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
