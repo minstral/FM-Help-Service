@@ -3,7 +3,7 @@
 	FM Help Service
 
 	Created by Mark Banks on 11/10/09.
-	Copyright 2009~2011 Mark Banks. All rights reserved.
+	Copyright 2009~2012 Mark Banks. All rights reserved.
 */
 
 
@@ -11,7 +11,7 @@
 
 
 #define MAXIMUM_SEARCH_TERM_LENGTH 64
-#define DEFAULT_FILEMAKER_HELP_BOOK @"FileMaker Pro 11 Help"
+#define DEFAULT_FILEMAKER_HELP_BOOK @"FileMaker Pro 12 Help"
 
 
 @implementation FM_Help_ServiceAppDelegate
@@ -88,41 +88,62 @@
 }
 
 
+// find the "best" FileMaker
+
+- (void) filemaker_url
+{
+	// first try whatever the OS thinks is the current FileMaker help
+	
+	// FM11 (and earlier)
+	NSString * pro = @"com.filemaker.client";
+	NSString * advanced = [pro stringByAppendingString: @".advanced"];
+	// FM12
+	NSString * pro12 = [pro stringByAppendingString: @".pro12"];
+	NSString * advanced12 = [pro stringByAppendingString: @".advanced12"];
+	
+	
+	// first try for "12 Advanced"	
+	url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: advanced12];
+	if ( url == nil ) {		
+		// then how about "Pro 12"	
+		url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: pro12];
+		if ( url == nil ) {		
+			// next try for "Advanced"	
+			url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: advanced];
+			if ( url == nil ) {		
+				// and failing that "Pro"
+				url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: pro];
+			}
+		}
+	}
+	
+}
+
+
 // find the FileMaker Pro [Advanced] help
 
 - (NSString *) helpBookID
 {
-	// first try whatever the OS thinks is the current FileMaker help
-	
-	NSString * pro = @"com.filemaker.client";
-	NSString * advanced = [pro stringByAppendingString: @".advanced"];
 
-	// first try for "Advanced"
-	
-	NSURL * url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: advanced];
-	if ( url == nil ) {
-		
-		// and failing that "Pro"
-		url = [[NSWorkspace sharedWorkspace] URLForApplicationWithBundleIdentifier: pro];
-	}
-
+	[self filemaker_url];
 
 	NSString * bookID;
-	if ( url == nil ) {
 
-		// still haven't found the help... make one last try
-		
-		bookID = DEFAULT_FILEMAKER_HELP_BOOK;
-		NSString * notFoundError = NSLocalizedString ( @"Unable to determine the help bookID. Trying: ", @"" );
-		NSLog ( @"%@%@", notFoundError, DEFAULT_FILEMAKER_HELP_BOOK );
-	
-	} else {
-		
+	if ( url != nil ) {
+
 		// extract the id for the help
 		
 		NSString *plistPath = [[url path ] stringByAppendingPathComponent:@"Contents/info.plist"];
 		NSDictionary * contentArray = [NSDictionary dictionaryWithContentsOfFile: plistPath];
 		bookID = [contentArray objectForKey: @"CFBundleHelpBookName"];
+	
+	} else {
+		
+		// still haven't found the help... make one last try
+		
+		bookID = DEFAULT_FILEMAKER_HELP_BOOK;
+		NSString * notFoundError = NSLocalizedString ( @"Unable to determine the help bookID. Trying: ", @"" );
+		NSLog ( @"%@%@", notFoundError, DEFAULT_FILEMAKER_HELP_BOOK );
 	
 	}
 	

@@ -3,7 +3,7 @@
 	FM Help Service
 
 	Created by Mark Banks on 11/10/09.
-	Copyright 2009~2011 Mark Banks. All rights reserved.
+	Copyright 2009~2012 Mark Banks. All rights reserved.
 */
 
 
@@ -11,6 +11,9 @@
 
 
 @interface FM_Help_ServiceAppDelegate : NSObject <NSApplicationDelegate> {
+	
+	NSURL * url;
+	
 }
 
 
@@ -20,6 +23,7 @@
 // "private" methods
 
 - (NSString *) searchTerm: (NSPasteboard *)pasteboard;
+- (void) filemaker_url;
 - (NSString *) helpBookID;
 
 
