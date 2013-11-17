@@ -1,4 +1,3 @@
-
 # user specific data in the project files
 *.xcuserstate
 *.xcbkptlist
@@ -23,3 +22,4 @@
 
 
 *.vcxproj.user
+FM Help Service License.pages*

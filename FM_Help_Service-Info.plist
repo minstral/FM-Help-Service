@@ -21,11 +21,11 @@
 	<key>CFBundleSignature</key>
 	<string>fMhS</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>LSBackgroundOnly</key>
 	<true/>
 	<key>NSMainNibFile</key>

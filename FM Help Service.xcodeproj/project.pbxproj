@@ -218,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# remove the old one and replace it with the new\n\n/bin/cp -R \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" \"/Applications/${PRODUCT_NAME}.app\"\n\n\n# create the distrubution disk image [ when doing release builds ]\n\nif [ $CONFIGURATION = Release ]\nthen\n\n# prepare the folder to be converted to a .dmg\n\nTEMP=\"/tmp/\"\nTEMP_DIR=\"${TEMP}${PRODUCT_NAME}\"\n/bin/rm -rf \"${TEMP_DIR}\"\n/bin/mkdir \"${TEMP_DIR}\"\n\n/bin/cp -R \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" \"${TEMP_DIR}\"\n/bin/cp \"Distribution/Web Site.webloc\" \"${TEMP_DIR}\"\n/bin/ln -s \"/Applications\" \"${TEMP_DIR}/Applications Folder\"\n/bin/cp \"Distribution/License.pdf\" \"${TEMP_DIR}\"\n\n# create the image\n\n/usr/bin/hdiutil create -srcfolder \"${TEMP_DIR}\" -ov -fs HFS+ -volname \"${PRODUCT_NAME}\" \"${TEMP_DIR}\"\n/bin/rm -rf \"${TEMP_DIR}\"\n\n# and put it on the desktop\n\nDISK_IMAGE_NAME=`/bin/echo \"${PRODUCT_NAME}\" | /usr/bin/sed s/\\ //g`\n/bin/mv \"${TEMP}${PRODUCT_NAME}.dmg\" ~/Desktop/$DISK_IMAGE_NAME.dmg\n\n\nfi\n";
+			shellScript = "# remove the old one and replace it with the new\n\n/bin/cp -Rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" \"/Applications/${PRODUCT_NAME}.app\"\n\n\n# create the distrubution disk image [ when doing release builds ]\n\nif [ $CONFIGURATION = Release ]\nthen\n\n# prepare the folder to be converted to a .dmg\n\nTEMP=\"/tmp/\"\nTEMP_DIR=\"${TEMP}${PRODUCT_NAME}\"\n/bin/rm -rf \"${TEMP_DIR}\"\n/bin/mkdir \"${TEMP_DIR}\"\n\n/bin/cp -R \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\" \"${TEMP_DIR}\"\n/bin/cp \"Distribution/Web Site.webloc\" \"${TEMP_DIR}\"\n/bin/ln -s \"/Applications\" \"${TEMP_DIR}/Applications Folder\"\n/bin/cp \"Distribution/License.pdf\" \"${TEMP_DIR}\"\n\n# create the image\n\n/usr/bin/hdiutil create -srcfolder \"${TEMP_DIR}\" -ov -fs HFS+ -volname \"${PRODUCT_NAME}\" \"${TEMP_DIR}\"\n#/bin/rm -rf \"${TEMP_DIR}\"\n\n# and put it on the desktop\n\nDISK_IMAGE_NAME=`/bin/echo \"${PRODUCT_NAME}\" | /usr/bin/sed s/\\ //g`\n/bin/mv \"${TEMP}${PRODUCT_NAME}.dmg\" ~/Desktop/$DISK_IMAGE_NAME.dmg\n\n\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -319,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -347,7 +348,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
@@ -355,6 +356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_LINK_OBJC_RUNTIME = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_GC = required;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = NO;
@@ -381,7 +383,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
