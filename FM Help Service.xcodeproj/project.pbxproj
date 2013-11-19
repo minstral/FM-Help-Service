@@ -28,6 +28,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4D1D2A06183C0DC6002EE191 /* FM Help Service.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "FM Help Service.entitlements"; path = "FM Help Service/FM Help Service.entitlements"; sourceTree = "<group>"; };
 		4D2E5BCD1081BF8200258D85 /* License.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = License.pdf; path = Distribution/License.pdf; sourceTree = "<group>"; };
 		4D2E5BCE1081BF8200258D85 /* Web Site.webloc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Web Site.webloc"; path = "Distribution/Web Site.webloc"; sourceTree = "<group>"; };
 		4D5288B8108172FF001824AC /* English */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = English; path = "English.lproj/FM Help Service.icns"; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		29B97314FDCFA39411CA2CEA /* FM Help Service */ = {
 			isa = PBXGroup;
 			children = (
+				4D1D2A06183C0DC6002EE191 /* FM Help Service.entitlements */,
 				4D2E5BC91081BF6900258D85 /* Distribution */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -174,6 +176,15 @@
 			attributes = {
 				LastUpgradeCheck = 0410;
 				ORGANIZATIONNAME = "Mark Banks";
+				TargetAttributes = {
+					8D1107260486CEB800E47090 = {
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FM Help Service" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -288,6 +299,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_ENTITLEMENTS = "FM Help Service/FM Help Service.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -305,6 +318,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_ENTITLEMENTS = "FM Help Service/FM Help Service.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FM_Help_Service_Prefix.pch;
